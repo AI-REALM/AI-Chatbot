@@ -1,7 +1,7 @@
 import openai
 
 # Set the api key directly
-openai.api_key = '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'
+openai.api_key = ''
 
 # # When using `openai.Image.create`, it's not necessary to create an OpenAI client object
 
