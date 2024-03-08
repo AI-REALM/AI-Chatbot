@@ -3,7 +3,7 @@ import subprocess
 import json
 
 # Set the api key directly
-openai.api_key = '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'
+openai.api_key = ''
 
 # Define the Node.js script's path
 node_script_path = 'src\\features\\scraping\\ex.js'
