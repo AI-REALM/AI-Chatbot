@@ -9,7 +9,11 @@ load_dotenv(dotenv_path='.env')
 
 openai_key = os.getenv('OPEAN_AI')
 # Set the api key directly
+<<<<<<< HEAD
 openai.api_key = openai_key
+=======
+openai.api_key = ''
+>>>>>>> af9ac7f1e3008a021cc56e99e1f73712c88834be
 
 # Define the Node.js script's path
 node_script_path = 'src\\features\\scraping\\website_scrap.js'
@@ -114,4 +118,9 @@ def answer_website(url, question):
         else:
             return thread1.result, thread1.code
     else:
+<<<<<<< HEAD
         return False, thread1.code
+=======
+        return raw_answer
+print(answer_website(url="https://www.airealm.tech", question="the summary of this website"))
+>>>>>>> af9ac7f1e3008a021cc56e99e1f73712c88834be
