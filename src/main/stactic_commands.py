@@ -19,10 +19,10 @@ async def bot_start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text(
         "Welcome aboard!\n"
         "Introducing Telegram's AI Chatbot.\n\n"
-        "🎨 Generate image\n"
-        "🎇 Process the image\n"
-        "🌐 Web AI Questions 🔍\n"
-        "🌐 Web AI Summary Agent 🖊\n", reply_markup=reply_markup
+        "🎨 Generate an image from text in seconds\n"
+        "🎇 Process the image and answer about the picture\n"
+        "🌐 Answers to the questions about the web 🔍\n"
+        "🌐 Summarize the website 🖊\n", reply_markup=reply_markup
     )
 
 # Define the stats command callback function
@@ -36,7 +36,7 @@ async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         imporession_count = len(f.readlines())
         f.close()
     # Define the stats message with the current date
-    stats_message = (f'📊 *AIRM Auditor Bot stats for {today_date}:*\n\n'
+    stats_message = (f'📊 *AIRM Chatbot stats for {today_date}:*\n\n'
                      f'💬 Groups using AIRM Auditor Bot: *{group_count}*\n'
                      f'👤 Unique users: *{user_count}*\n'
                      f'👁️ User impressions: *{imporession_count}*')
@@ -46,23 +46,22 @@ async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 # Define the help command callback function
 async def help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     help_text = (
-        "🦾 How to use the bot\n\n"
-        
-        "👜 wallet command\n"
-        "The `/wallet` command searches for a wallet with a given address and displays the wallet status.\n\n"
-        
-        "🔬 aduit command\n"
-        "The `/aduit` command is for token auditors. This command will search contract address with user's given address and analyze contract and display detailed information of contract.\n\n"
-        
-        "🔭 code\n"
-        "The `/code` command is for code auditors. This command analyzes the user's code and reports the problems and potential risks of the code.\n\n"
-        
-        "🍀 P.S. Using bot in group\n"
-        "In group, many people chat with each other. So to use bot in group, you need to do the following:\n"
-        "1. Use commands\n"
-        "Please enter address with commands, e.g. `/wallet 0xaf6f2...`\n"
+        """🦾 How to use the bot
 
-        "2. Enter Bot Name\n"
-        "Please enter the bot name first, followed by your address or code. e.g. `@AIRMAuditorBOT 0xaf6f25B9...`\n"
+🎨 image command
+The <code>/image</code> command generates image from text.
+
+🎇 ximage command
+The <code>/ximage</code> command processes images. This commands answer questions about or describe an image. When sending an image, you must include a question as a caption.
+
+🌐 web
+The <code>/web</code> command answers question about the website.
+
+🌐 web_summary
+The <code>/web_summary</code> command summarizes the website.
+
+🍀 P.S. Using bot in group
+In group, many people chat with each other. So to use bot in group, you need to nter Bot Name. Please enter the bot name first, followed by your input text.
+E.g. <code>@AIRMChatBOT https://www.airealm.tech/</code>, <code>@AIRMChatBOT What is contract address of this</code>"""
     )
-    await update.message.reply_text(help_text, parse_mode=ParseMode.MARKDOWN)
+    await update.message.reply_text(help_text, disable_web_page_preview=True, parse_mode=ParseMode.HTML)

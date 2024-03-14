@@ -73,8 +73,8 @@ async def generation_image(update: Update, context: ContextTypes.DEFAULT_TYPE) -
     message = update.message or update.callback_query.message
 
     text = update.message.text or update.callback_query.data
-    if "@AIRMAuditorBOT" in text:
-        text = text.replace("@AIRMAuditorBOT", "").strip()
+    if "@AIRMChatBOT" in text:
+        text = text.replace("@AIRMChatBOT", "").strip()
 
     sent_message = await message.reply_text(f'Generating image ...', parse_mode=ParseMode.MARKDOWN)
 
@@ -169,8 +169,8 @@ async def web_summary_handle(update: Update, context: ContextTypes.DEFAULT_TYPE)
 async def general_image_handle(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     message = update.message or update.callback_query.message
     # text = update.message.text or update.callback_query.data
-    # if "@AIRMAuditorBOT" in text:
-    #     text = text.replace("@AIRMAuditorBOT", "").strip()
+    # if "@AIRMChatBOT" in text:
+    #     text = text.replace("@AIRMChatBOT", "").strip()
     
     chat_id = message.chat_id
     user = get_user_by_id(chat_id)
@@ -194,23 +194,23 @@ async def general_chat_handle(update: Update, context: ContextTypes.DEFAULT_TYPE
 
     elif user.method == "web":
         text = update.message.text or update.callback_query.data
-        if "@AIRMAuditorBOT" in text:
-            text = text.replace("@AIRMAuditorBOT", "").strip()
+        if "@AIRMChatBOT" in text:
+            text = text.replace("@AIRMChatBOT", "").strip()
         await web_question(update=update, context=context, url=user.url, question=text)
 
     elif user.method == "weburl":
         update_moethod(user.id, "web")
         text = update.message.text or update.callback_query.data
-        if "@AIRMAuditorBOT" in text:
-            text = text.replace("@AIRMAuditorBOT", "").strip()
+        if "@AIRMChatBOT" in text:
+            text = text.replace("@AIRMChatBOT", "").strip()
         update_url(id=user.id, url=text)
         await message.reply_text(f'What is your question about this website?', parse_mode=ParseMode.MARKDOWN)
 
     elif user.method == "websummary":
         update_moethod(user.id, "websummary")
         text = update.message.text or update.callback_query.data
-        if "@AIRMAuditorBOT" in text:
-            text = text.replace("@AIRMAuditorBOT", "").strip()
+        if "@AIRMChatBOT" in text:
+            text = text.replace("@AIRMChatBOT", "").strip()
 
         await web_question(update=update, context=context, url=text, question="Write about this summary")
 

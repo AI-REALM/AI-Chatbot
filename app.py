@@ -16,10 +16,11 @@ API_URL = f"https://api.telegram.org/bot{TOKEN}/setMyCommands"
 
 commands = [
     {"command": "start", "description": "Displays help text"},
-    {"command": "ximage", "description": "Process the image."},
     {"command": "image", "description": "Generate image."},
+    {"command": "ximage", "description": "Process the image."},
     {"command": "web", "description": "Web AI Questions."},
     {"command": "web_summary", "description": "Web AI Summary Agent"},
+    {"command": "help", "description": "How to use the bot"},
     {"command": "stats", "description": "Displays the bot stats"}
 ]
 

@@ -3,7 +3,7 @@ const puppeteer = require('puppeteer');
 const url = process.argv[2];
 
 (async () => {
-    const browserURL = "http://127.0.0.1:9223";
+    const browserURL = "http://127.0.0.1:9222";
 
     const browser = await puppeteer.connect({ browserURL });
     const page = await browser.newPage()
