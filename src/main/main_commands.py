@@ -49,7 +49,10 @@ async def processing_image(update: Update, context: ContextTypes.DEFAULT_TYPE) -
     else:
         log_function(chat_id=message.chat_id, request_type="processing", user_input=f'{new_file.file_path}-----{prompt}', result=code)
         await admin_notify(context=context, admin_chat_id=admin, user_chat_id=message.chat_id, rquest_type="processing", user_input=f'{new_file.file_path}-----{prompt}', result_code=code)
-        await sent_message.edit_text(f'❌ Failed in the generation of your pictures. Please retry after a few minutes.\nP.S. If you want to know more details, please contact me directly @fieryfox617',parse_mode=ParseMode.MARKDOWN)
+        if code == "content_policy_violation":
+            await sent_message.edit_text(f'✋ Your input contain content that is not allowed by our safety system.',parse_mode=ParseMode.MARKDOWN)
+        else:
+            await sent_message.edit_text(f'❌ Failed in the generation of your pictures. Please retry after a few minutes.\nP.S. If you want to know more details, please contact me directly @fieryfox617',parse_mode=ParseMode.MARKDOWN)
         await asyncio.sleep(5)
         await sent_message.delete()
 
@@ -91,7 +94,10 @@ async def generation_image(update: Update, context: ContextTypes.DEFAULT_TYPE) -
     else:
         log_function(chat_id=message.chat_id, request_type="generation", user_input=text, result=code)
         await admin_notify(context=context, admin_chat_id=admin, user_chat_id=message.chat_id,rquest_type="generation", user_input=text, result_code=code)
-        await sent_message.edit_text(f'❌ Failed in the generation of your pictures. Please retry after a few minutes.\nP.S. If you want to know more details, please contact me directly @fieryfox617',parse_mode=ParseMode.MARKDOWN)
+        if code == "content_policy_violation":
+            await sent_message.edit_text(f'✋ Your input contain content that is not allowed by our safety system.',parse_mode=ParseMode.MARKDOWN)
+        else:
+            await sent_message.edit_text(f'❌ Failed in the generation of your pictures. Please retry after a few minutes.\nP.S. If you want to know more details, please contact me directly @fieryfox617',parse_mode=ParseMode.MARKDOWN)
         await asyncio.sleep(5)
         await sent_message.delete()
 
