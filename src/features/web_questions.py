@@ -17,10 +17,10 @@ node_script_path = 'src\\features\\scraping\\website_scrap.js'
 class Openai_gpt4(Thread):
     def __init__(self, url: str, prompt:str) -> None:
         super().__init__()
-        if "http" in url:
-            self.url = "http://" + url
-        else:
+        if "http://" in self.url or "https://" in self.url:
             self.url = url
+        else:
+            self.url = "http://" + url
         self.prompt = prompt
         self.code = None
         self.result = None

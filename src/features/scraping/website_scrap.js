@@ -9,11 +9,32 @@ const url = process.argv[2];
     const page = await browser.newPage()
     try {
       await page.setViewport({ width:1600, height: 900});
-      await page.goto(
-        `${url}`,
-        { waitUntil: 'networkidle0' }
-      );
-
+      if (url.startsWith("https://")) {
+        await page.goto(
+          `${url}`,
+          { waitUntil: 'networkidle0' }
+        );
+      } else {
+        if (url.startsWith("http://")) {
+          await page.goto(
+            `${url}`,
+            { waitUntil: 'networkidle0' }
+          );
+        } else {
+            try{
+              await page.goto(
+                `https://${url}`,
+                { waitUntil: 'networkidle0' }
+              );
+            } catch {
+              await page.goto(
+                `http://${url}`,
+                { waitUntil: 'networkidle0' }
+              );
+            }
+        }
+      }
+      console.log("page goto")
     // Evaluate the function inside the page context to extract the simplified structure
       const textContent = await page.evaluate(() => {
           return document.body.innerText;
